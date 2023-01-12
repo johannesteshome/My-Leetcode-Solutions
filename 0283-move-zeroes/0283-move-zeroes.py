@@ -3,11 +3,16 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        index = 0
-        length = len(nums)
-        for i in range(length):
-            if(nums[index] == 0):
-                del nums[index]
-                nums.append(0)
-            else:
-                index = index + 1
+        read = 0
+        write = 0
+        
+        while(read < len(nums)):
+            if(nums[read] != 0):
+                temp = nums[read]
+                nums[read] = nums[write]
+                nums[write]= temp
+                
+                write += 1
+                
+            read += 1
+                
