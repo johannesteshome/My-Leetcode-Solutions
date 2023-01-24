@@ -3,16 +3,15 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        read = 0
-        write = 0
-        
-        while(read < len(nums)):
-            if(nums[read] != 0):
-                temp = nums[read]
-                nums[read] = nums[write]
-                nums[write]= temp
-                
-                write += 1
-                
-            read += 1
-                
+        left = 0
+        right = 0
+        while right < len(nums):
+            if nums[right] != 0:
+                nums[left] = nums[right]
+                right += 1
+                left += 1
+            else:
+                right+=1
+        for i in range(left, len(nums)):
+            nums[i] = 0
+        return nums
