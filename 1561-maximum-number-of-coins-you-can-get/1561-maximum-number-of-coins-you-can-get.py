@@ -1,15 +1,11 @@
 class Solution:
     def maxCoins(self, piles: List[int]) -> int:
-        ansLength = len(piles)/3
-        ans = []
+        ans = 0
         piles.sort()
         
-        for i in range(len(piles) - 2, -1, -2):
-                if len(ans) < ansLength:
-                    ans.append(piles[i])
-                else:
-                    break
+        for i in range(len(piles) - 1, len(piles)//3, -2):
+                ans += piles[i-1]
         
-        return sum(ans)
+        return ans
             
             
