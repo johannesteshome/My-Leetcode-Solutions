@@ -23,12 +23,3 @@ class Solution:
             
         return count
             
-#         for(int i=0; i<numsBit.length; i++){
-#             Sum += numsBit[i];
-            
-#             if(Map.containsKey(sum-k))
-#                 count += map.get(sum-k);
-            
-#             map.put(sum, map.getOrDefault(sum, 0) + 1);
-#         }
-#         return count;
