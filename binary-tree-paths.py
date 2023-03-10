@@ -23,5 +23,4 @@ class Solution:
             treePath(root.right, path)
             
         treePath(root, path)
-        print(answer)
         return answer
