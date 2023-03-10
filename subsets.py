@@ -3,7 +3,7 @@ class Solution:
         ans = []
 
         def backtrack(idx, arr):
-            ans.append(arr)
+            ans.append(arr[:])
             # if len(ans) == 2**len(nums):
             #     return
 
