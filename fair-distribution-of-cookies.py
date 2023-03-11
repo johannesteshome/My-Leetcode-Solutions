@@ -9,7 +9,7 @@ class Solution:
                 self.minUnfairness = min(self.minUnfairness,max(package))
                 return
             
-            #prunning
+            #prunning to avoid further checks
             if max(package) >= self.minUnfairness:
                 return
             
