@@ -3,7 +3,6 @@ class Solution:
         n = len(nums)
         i = 0
         Map = defaultdict(list)
-        answer = []
         while i < n:
             correct_position = nums[i] -1
             if correct_position != i:
@@ -14,5 +13,4 @@ class Solution:
                     nums[correct_position], nums[i] = nums[i], nums[correct_position]
             else:
                 i += 1
-        print(nums)
         return Map.values()
