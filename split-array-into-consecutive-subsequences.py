@@ -1,19 +1,17 @@
 class Solution:
     def isPossible(self, nums: List[int]) -> bool:
+        # create an array to store all possible subsequences of the array
         heapArr = []
 
+        # iterate through the list with min-heap
         while nums:
             found = False
-            if not heapArr:
-                num = heappop(nums)
-                heapArr.append([num])
-                continue
-            
+
+            # pop the minimum item in the list           
             num = heappop(nums)
-            # print(heapArr)
             
+            # from the list of subsequences start from the last subsequence to add the item because the last subsequence probably not have satisfied the rule of having length of 3 or more
             for heap in range(len(heapArr)-1, -1, -1):
-                # print(heap)
                 if num - heapArr[heap][-1] == 1:
                     heapArr[heap].append(num)
                     found = True
@@ -22,8 +20,8 @@ class Solution:
             
             if not found:
                 heapArr.append([num])
-            # print(heapArr)
 
+        # from the lists check if all have length of 3 or more
         for heap in range(len(heapArr)-1, -1, -1):
             if len(heapArr[heap]) < 3:
                 return False
