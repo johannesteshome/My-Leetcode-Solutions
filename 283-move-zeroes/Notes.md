@@ -1,0 +1,1 @@
+<h2>move-zeroes Notes</h2><hr>I revised it and did it with the seeker-placehodler approach of two pointers. The seeker finds a non-zero element while the place holder searches for a zero element to displace and stays there until the seeker finds a non-zero element to displace it.
