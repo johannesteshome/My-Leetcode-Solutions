@@ -1,11 +1,13 @@
 class Solution:
     def minDeletionSize(self, strs: List[str]) -> int:
+        zippedStrs = list(zip(*strs))
         count = 0
-        zippedStr = list(zip(*strs))
-        for strs in zippedStr:
-            for i in range(0, len(strs) - 1):
-                if(ord(strs[i]) > ord(strs[i+1])):
-                    count += 1
-                    break
-                    
+        
+        for strss in zippedStrs:
+            string = list(strss)
+            sortedStr = sorted(string)
+            # print(string, sortedStr)
+            if string != sortedStr:
+                count += 1
+        
         return count
