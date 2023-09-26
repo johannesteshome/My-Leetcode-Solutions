@@ -26,10 +26,8 @@ class Trie:
 
         while queue:
             for _ in range(len(queue)):
-                curr = queue.popleft()
-                currTrie = curr[0]
-                currIndex = curr[1]
-
+                currTrie, currIndex = queue.popleft()
+                
                 count += currTrie.isEndOfWord
 
                 for i in range(26):
