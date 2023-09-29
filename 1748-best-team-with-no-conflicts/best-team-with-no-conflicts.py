@@ -2,10 +2,8 @@ class Solution:
     def bestTeamScore(self, scores: List[int], ages: List[int]) -> int:
         combined = list(zip(ages, scores))
         combined = sorted(combined)
-        print(combined)
 
         dp = [combined[i][1] for i in range(len(scores))]
-        print(dp)
 
         for i in range(len(scores)-1, -1, -1):
             for j in range(i+1, len(scores)):
@@ -15,5 +13,3 @@ class Solution:
                 dp[i] = max(dp[i], dp[j]+combined[i][1])
         
         return max(dp)
-
-        
