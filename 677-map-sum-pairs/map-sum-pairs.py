@@ -24,17 +24,7 @@ class MapSum:
         
 
     def sum(self, prefix: str) -> int:
-        print("string")
-        curr = self.root
-        queue = deque([self.root])
-        while queue:
-            for _ in range(len(queue)):
-                currs  = queue.popleft()
-                for i in range(len(currs.children)):
-                    if currs.children[i]:
-                        print(i, currs.isEndOfWord, currs.value)
-                        queue.append(currs.children[i])
-        
+        curr = self.root        
         answer = 0
         for char in prefix:
             pos = ord(char) - 97
