@@ -6,27 +6,24 @@ class Solution:
             'left': (0, -1),
             'right': (0, 1)
         }
-        m = len(heights)
-        n = len(heights[0])
-        dist = [[float("inf") for _ in range(n)] for _ in range(m)]
-        
-        
-        heap = [(0, (0,0))]
-        visted = set()
+        n = len(heights)
+        m = len(heights[0])
+
+        heap = [(0, 0, 0)]
+        heapify(heap)
+        visited = set()
+
         while heap:
-            weight, node = heapq.heappop(heap)
-            if node == (m-1, n-1):
-                return weight
-            if node in visted:
+            dist, row, col = heappop(heap)
+
+            if (row, col) in visited:
                 continue
-            visted.add(node)
             
-            # print(node, weight)
+            if (row,col) == (n-1, m-1):
+                return dist
+            visited.add((row, col))
             for i in dire:
-                x = node[0] + dire[i][0]
-                y = node[1] + dire[i][1]
-                if 0 <= x < m and 0 <= y < n:
-                    currEffort = abs(heights[x][y] - heights[node[0]][node[1]])
-                    if dist[x][y] > currEffort:
-                        dist[x][y] = max(weight, currEffort)
-                        heappush(heap, (dist[x][y], (x,y)))
+                x,y = row + dire[i][0], col + dire[i][1]
+
+                if 0<=x < n and 0<=y < m:
+                    heappush(heap, (max(dist, abs(heights[x][y] - heights[row][col])), x,y))
