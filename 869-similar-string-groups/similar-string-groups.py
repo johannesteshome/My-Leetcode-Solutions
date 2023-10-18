@@ -38,12 +38,9 @@ class Solution:
                 if diff <= 2:
                     union(strs[i], strs[j])
         
-        print(unionSet)
         ans = defaultdict(list)
 
         for union in unionSet:
             ans[find(unionSet[union])].append(union)
         
         return len(ans)
-
-        return 9
