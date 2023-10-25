@@ -36,7 +36,7 @@ class Solution:
             else:
                 right = 0
             
-            print(left, right, curr.val)
+            # print(left, right, curr.val)
 
             if left + right == 0:
                 return -(curr.val - 1)
