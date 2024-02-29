@@ -12,34 +12,34 @@ class Solution:
 
         while queue:
             # print(level, 'level')
-            stack = []
+            prev = None
 
             for _ in range(len(queue)):
                 node = queue.popleft()
                 if level % 2 == 0:
                     if node.val % 2 != 0:
-                        if not stack:
-                            stack.append(node.val)
+                        if not prev:
+                            prev = node.val
                         else:
-                            if stack[-1] < node.val:
-                                stack.append(node.val)
+                            if prev < node.val:
+                                prev = node.val
                             else:
                                 return False
                     else:
                         return False
                 else:
                     if node.val % 2 == 0:
-                        if not stack:
-                            stack.append(node.val)
+                        if not prev:
+                            prev = node.val
                         else:
-                            if stack[-1] > node.val:
-                                stack.append(node.val)
+                            if prev > node.val:
+                                prev = node.val
                             else:
                                 return False
                     else:
                         return False
                 if node.left:
-                    print('here')
+                    # print('here')
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
