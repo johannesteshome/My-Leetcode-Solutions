@@ -4,18 +4,26 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
 
-        seeker = 1
-        placeholder = 0
+        """
+        [1,3,12,0,0]
+                
 
-        while seeker < len(nums):
-            if nums[placeholder] != 0:
-                placeholder += 1
-                seeker += 1
-            elif nums[placeholder] == 0:
-                if nums[seeker] == 0:
-                    seeker += 1
-                else:
-                    nums[placeholder], nums[seeker] = nums[seeker], nums[placeholder]
-                    placeholder += 1
-                    seeker += 1
+        1. use read and write indices
+        2. read index will iterate through the list and will look into zero
+        3.
+
+        """
+        read = 0
+        write = 0
+
+        while read < len(nums):
+            if nums[read] != 0:
+                temp = nums[read]
+                nums[read] = nums[write]
+                nums[write] = temp
+            
+                write += 1
+            
+            read += 1
+        
         
