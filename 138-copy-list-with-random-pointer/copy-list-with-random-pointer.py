@@ -12,38 +12,29 @@ class Solution:
         if not head:
             return None
         dummy = head
-        count = 0
-        hashmap = defaultdict()
-        copyNode = Node(0)
-        newDummy = copyNode
+        visited = {}
+        # copyNode = Node(0)
+        # newDummy = copyNode
 
         while dummy:
-            newDummy.val = dummy.val
-            newDummy.next = dummy.next
-
-            hashmap[count] = newDummy
-
-            dummy.val = (dummy.val, count)
-
-            if dummy.next:
-                count += 1
-
-                newNode = Node(0)
-                newDummy.next = newNode
-                newDummy = newDummy.next
-                
-            dummy = dummy.next
-        
-        # print(hashmap)
-        dummy = head
-        newDummy = copyNode
-
-        while dummy:
-            if dummy.random:
-                index = dummy.random.val[1]
-                newDummy.random = hashmap[index]
+            if dummy not in visited:
+                newNode = Node(dummy.val)
+                visited[dummy] = newNode
+            
+            if dummy.next and dummy.next in visited:
+                visited[dummy].next = visited[dummy.next]
+            elif dummy.next and dummy.next not in visited:
+                newNode = Node(dummy.next.val)
+                visited[dummy.next] = newNode
+                visited[dummy].next = newNode
+            
+            if dummy.random and dummy.random in visited:
+                visited[dummy].random = visited[dummy.random]
+            elif dummy.random and dummy.random not in visited:
+                newNode = Node(dummy.random.val)
+                visited[dummy.random] = newNode
+                visited[dummy].random = newNode
             
             dummy = dummy.next
-            newDummy = newDummy.next
         
-        return copyNode
+        return visited[head]
