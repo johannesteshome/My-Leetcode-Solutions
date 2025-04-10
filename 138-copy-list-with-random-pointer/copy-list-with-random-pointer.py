@@ -9,27 +9,41 @@ class Node:
 
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        if head == None:
+        if not head:
             return None
-        oldList = head
-        nodes = {}
+        dummy = head
+        count = 0
+        hashmap = defaultdict()
+        copyNode = Node(0)
+        newDummy = copyNode
 
-        while oldList:
-            nodes[oldList] = Node(0)
-            oldList = oldList.next
+        while dummy:
+            newDummy.val = dummy.val
+            newDummy.next = dummy.next
 
-        oldList = head
+            hashmap[count] = newDummy
+
+            dummy.val = (dummy.val, count)
+
+            if dummy.next:
+                count += 1
+
+                newNode = Node(0)
+                newDummy.next = newNode
+                newDummy = newDummy.next
+                
+            dummy = dummy.next
         
-        while oldList:
-            nodes[oldList].val = oldList.val
-            if oldList.next:
-                nodes[oldList].next = nodes[oldList.next]
-            if oldList.random:
-                nodes[oldList].random = nodes[oldList.random]
-            oldList = oldList.next
-        
-        return list(nodes.values())[0]
+        # print(hashmap)
+        dummy = head
+        newDummy = copyNode
+
+        while dummy:
+            if dummy.random:
+                index = dummy.random.val[1]
+                newDummy.random = hashmap[index]
             
-
+            dummy = dummy.next
+            newDummy = newDummy.next
         
-        
+        return copyNode
