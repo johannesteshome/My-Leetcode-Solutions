@@ -1,49 +1,51 @@
 class TrieNode:
+
     def __init__(self):
-        self.children = [None for _ in range(26)]
-
+        self.children = defaultdict()
         self.isEndOfWord = False
-
 
 class Trie:
 
     def __init__(self):
-        self.root = TrieNode()        
+        self.trie = TrieNode()
 
     def insert(self, word: str) -> None:
-        curr = self.root
-        for char in word:
-            pos = ord(char) - 97
-            if not curr.children[pos]:
-                curr.children[pos] = TrieNode()
-            curr = curr.children[pos]
+        curr = self.trie
+        
+        for i in range(len(word)):
+            if word[i] not in curr.children:
+                newNode = TrieNode()
+                curr.children[word[i]] = newNode
+            
+            curr = curr.children[word[i]]
+
         curr.isEndOfWord = True
-                    
+        
 
     def search(self, word: str) -> bool:
-        curr = self.root
-        for char in word:
-            pos = ord(char) - 97
-            if not curr.children[pos]:
+
+        curr = self.trie
+
+        for i in range(len(word)):
+            if word[i] in curr.children:
+                curr = curr.children[word[i]]
+            else:
                 return False
-            curr = curr.children[pos]
 
         if curr.isEndOfWord:
             return True
-        return False
-        
+        return False 
 
     def startsWith(self, prefix: str) -> bool:
-        # print("Starts")
-        curr = self.root
-        for char in prefix:
-            pos = ord(char) - 97
-            if not curr.children[pos]:
-                return False
-            curr = curr.children[pos]
+        curr = self.trie
 
-        return True
-        
+        for i in range(len(prefix)):
+            if prefix[i] in curr.children:
+                curr = curr.children[prefix[i]]
+            else:
+                return False
+
+        return True 
 
 
 # Your Trie object will be instantiated and called as such:
